@@ -60,7 +60,8 @@ void update_world(struct world *w, unsigned int time_slice)
     for (i=0; i<MY_BULLET_MAX; i++) {
         update_my_bullet(&(w->my_bullets[i]), &(w->me),
                          w->enemies,
-                         w->explosion_i, w->explosions);
+                         w->explosion_i, w->explosions,
+                         time_slice);
     }
     for (i=0; i<ENEMY_BULLET_MAX; i++) {
         update_enemy_bullet(&(w->enemy_bullets[i]), &(w->me),

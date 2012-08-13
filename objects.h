@@ -40,7 +40,8 @@ void update_enemy_bullet(struct bullet *b, struct player *p,
                          int explosion_i, struct explosion *explosions);
 void update_my_bullet(struct bullet *b, struct player *p,
                       struct enemy *enemies,
-                      int explosion_i, struct explosion *explosions);
+                      int explosion_i, struct explosion *explosions,
+                      unsigned int time_slice);
 
 void control_enemy_weapons(struct enemy *e, int *bullet_i, struct bullet *b);
 

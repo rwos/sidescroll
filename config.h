@@ -19,6 +19,10 @@
 
 #define LIVE_COST 10000
 
+/* in characters per ms */
+#define PLAYER_BULLET_SPEED 0.1
+
+
 #define ENEMY_BULLET_SPEED 3
 
 /* maximum number of objects */

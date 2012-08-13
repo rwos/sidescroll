@@ -99,14 +99,15 @@ void start_explosion(int x, int y, int size, int length,
 
 void update_my_bullet(struct bullet *b, struct player *p,
                       struct enemy *enemies,
-                      int explosion_i, struct explosion *explosions)
+                      int explosion_i, struct explosion *explosions,
+                      unsigned int time_slice)
 {
     int i;
     unsigned int current;
     struct enemy *e;
 
     if (b->shot) {
-        b->x += 3;
+        b->x += PLAYER_BULLET_SPEED * time_slice;
         if (b->x > X_MAX) {
             b->shot = 0;
         }
