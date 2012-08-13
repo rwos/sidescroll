@@ -31,6 +31,6 @@ void save_highscores(int points, int multi)
 //	fwrite(buffer, sizeof(int), sizeof(buffer)/sizeof(int), hs);
 	fprintf(hs, "%d %d\n", points, multi);
 	fclose(hs);
-	show_highscores();
+	//show_highscores();
 	//exit(0);
 }
