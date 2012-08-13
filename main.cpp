@@ -25,7 +25,8 @@ int main(int argc, char *argv[])
     int coopFd;
     enum mode mo;
 
-    unsigned int fps=0, capped, last_frame_capped=0, start, end, in_menu=1;
+    unsigned int fps=0, capped, last_frame_capped=0, in_menu=1;
+    unsigned int start = 0, end = 0, last_frame_time = 0;
     struct world w, coop;
 
     Uint8 *keystate;
@@ -103,7 +104,7 @@ int main(int argc, char *argv[])
            break;
         case SERVER:
         case SP:
-           update_world(&w);
+           update_world(&w, last_frame_time);
            break;
         }
         if (start - w.me.last_hit > POINTS_MULTI_TIME)
@@ -128,12 +129,13 @@ int main(int argc, char *argv[])
         last_frame_capped = 0;
         do {
             end = SDL_GetTicks();
-            fps = 1000 / (end-start);
+            last_frame_time = end - start;
+            fps = 1000 / last_frame_time;
             capped = 0;
             if (fps > MAX_FPS) {
                 capped = 1;
                 last_frame_capped = 1;
-                usleep((1000/MAX_FPS - (end-start))*1000);
+                usleep((1000/MAX_FPS - last_frame_time)*1000);
             }
         } while(capped);
     }

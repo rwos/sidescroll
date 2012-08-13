@@ -43,7 +43,7 @@ void init_world(struct world *w)
     w->explosion_i    = 0;
 }
 
-void update_world(struct world *w)
+void update_world(struct world *w, unsigned int time_slice)
 {
     int i, oldx, oldy, oldpoints;
     /* roll-around indices */

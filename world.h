@@ -21,7 +21,7 @@ struct world {
 };
 
 void init_world  (struct world *w);
-void update_world(struct world *w);
+void update_world(struct world *w, unsigned int time_slice);
 void draw_world  (struct world *w);
 void merge_worlds(struct world *w1, struct world *w2, enum mode mo);
 
