@@ -29,8 +29,6 @@ int main(int argc, char *argv[])
     Uint8 *keystate;
     SDL_Event event;
 
-
-
     init_io();
     atexit(stop_io); /** XXX MOVE TO IO **/
     init_world(&w);
