@@ -96,7 +96,7 @@ void draw_enemy_bullet(struct bullet *b)
 
 void draw_background(unsigned int progress)
 {
-    int x, y, r, paral, x_step, y_step;
+    int x, y, paral, x_step, y_step;
 
     x_step = X_MAX / STAR_BANNER_X_STARS;
     if (x_step == 0) x_step = 1;
