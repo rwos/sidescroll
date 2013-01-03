@@ -3,7 +3,6 @@
 #include "profile.h"
 #include "io.h"
 #include "graphics.h"
-#include "highscores.h"
 
 #include "world.h"
 
@@ -80,7 +79,6 @@ void update_world(struct world *w, unsigned int time_slice)
         w->me.x = oldx;
         w->me.y = oldy;
         w->me.points = oldpoints;
-        save_highscores(w->me.points, w->me.multiplier_max);
         start_explosion(w->me.x+3, w->me.y-3, 500, 500,
                         w->explosion_i, w->explosions);
         w->me.health = 100;

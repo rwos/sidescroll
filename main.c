@@ -17,14 +17,11 @@ void control_ship(Uint8 *keystate, struct player *p);
 void control_weapons(Uint8 *keystate, struct player *p,
                      int *bullet_i, struct bullet *bullets);
 
-int main(int argc, char *argv[])
+int main(void)
 {
-    int coopFd;
-    enum mode mo;
-
     unsigned int fps=0, capped, last_frame_capped=0, in_menu=1;
     unsigned int start = 0, end = 0, last_frame_time = 0;
-    struct world w, coop;
+    struct world w;
 
     Uint8 *keystate;
     SDL_Event event;
