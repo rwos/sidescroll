@@ -1,0 +1,14 @@
+
+BUGS:
+
+ - currently dies after some seconds, not sure why
+   (window manager related?)
+
+
+TODO:
+
+- switching profiler on/off
+- points
+- winning condition
+- highscore list (?)
+
