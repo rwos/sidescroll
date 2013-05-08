@@ -12,16 +12,14 @@
  * XXX - COMPLETE REWRITE needed - our APIs are bad and we should feel bad.
  */
 
-enum button {UNUSED=-1, START_SP, GOTO_CLIENT, GOTO_SERVER, EXIT};
-enum submenu {MAIN_MENU, CLIENT_MENU, SERVER_MENU};
+enum button {UNUSED=-1, START_SP, EXIT};
+enum submenu {MAIN_MENU};
 
 void draw_menu_head(int progress, int *offset);
 void draw_menu_bottom(enum button selected_option,
                       enum submenu current_submenu, int *offset);
 
 void draw_main_menu(enum button selected_option, int *offset);
-void draw_server_menu(enum button selected_option, int *offset);
-void draw_client_menu(enum button selected_option, int *offset);
 
 void centered(int *y, char *s);
 void button(int *y, char *text, int selected);
@@ -58,18 +56,11 @@ int show_menu(Uint8 *keystate, int progress)
     case MAIN_MENU:
         draw_main_menu(selection, &menu_offset);
         break;
-    case CLIENT_MENU:
-        draw_client_menu(selection, &menu_offset);
-        break;
-    case SERVER_MENU:
-        draw_server_menu(selection, &menu_offset);
-        break;
     }
     draw_menu_bottom(selection, in_submenu, &menu_offset);
     update_io();
 
     /* selection handling */
-// XXX must depend on submenu
     if (keystate[SDLK_SPACE] || keystate[SDLK_RETURN]) {
         fire = 1;
     } else if (fire) {
@@ -77,16 +68,6 @@ int show_menu(Uint8 *keystate, int progress)
         switch (selection) {
             case START_SP:
                 return 0; /* start game */
-            case GOTO_CLIENT:
-                break; // XXX XXX XXX XXX XXX
-                selection = 0; /* XXX CLIENT_ENTER_IP */
-                in_submenu = CLIENT_MENU;
-                break;
-            case GOTO_SERVER:
-                break; // XXX XXX XXX XXX XXX
-                selection = 0; /* XXX START_SERVER */
-                in_submenu = SERVER_MENU;
-                break;
             case EXIT:
                 if (in_submenu == MAIN_MENU)
                     exit(0);
@@ -133,27 +114,11 @@ void draw_menu_bottom(enum button selected_option,
 
 void draw_main_menu(enum button selected_option, int *offset)
 {
-    button(offset, "SINGLE PLAYER",      (selected_option == START_SP));
-    button(offset, "MULTIPLAYER CLIENT (non-worky)", (selected_option == GOTO_CLIENT));
-    button(offset, "MULTIPLAYER SERVER (non-worky)", (selected_option == GOTO_SERVER));
-}
-
-void draw_server_menu(enum button selected_option, int *offset)
-{
-    button(offset, "START SERVER",      (selected_option == START_SP));
-}
-
-void draw_client_menu(enum button selected_option, int *offset)
-{
-    button(offset, "XXXXXXXXXXXXXXXXXXXXXXSINGLE PLAYER",      (selected_option == START_SP));
-    button(offset, "MULTIPLAYER CLIENT", (selected_option == GOTO_CLIENT));
-    button(offset, "MULTIPLAYER SERVER", (selected_option == GOTO_SERVER));
+    button(offset, "SINGLE PLAYER", (selected_option == START_SP));
 }
 
 void button(int *y, char *text, int selected)
 {
-    int i;
-    char buf[1024];
     if (selected)
         io_set_color(0xff, 0xff, 0);
     else

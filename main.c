@@ -35,6 +35,10 @@ int main(void)
 
         start = SDL_GetTicks();
 
+        /*** XXX DEBUG */
+        if (w.progress > 1000) exit(0);
+        /*** XXX DEBUG */
+
         start_profile("update");
         start_profile("keybord input");
         /* processing keyboard input */
